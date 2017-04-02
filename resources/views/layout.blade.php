@@ -15,6 +15,7 @@
                 <li><a href="/city">Города</a></li>
                 <li><a href="/country">Страны</a></li>
                 <li><a href="/currency">Валюты</a></li>
+                <li><a href="/quote">Котировки валют</a></li>
             </ul>
         </div>
     </div>

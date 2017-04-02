@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::resource('city', 'CityController');
 Route::resource('country', 'CountryController');
 Route::resource('currency', 'CurrencyController');
+Route::resource('quote', 'QuoteController');

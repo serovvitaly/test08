@@ -14,7 +14,9 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        return view('currency.index');
+        return view('currency.index', [
+            'items' => Currency::paginate(20),
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        //
+        return view('currency.form');
     }
 
     /**
@@ -35,7 +37,12 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $city = new Currency();
+        $city->title = $request->get('title');
+        $city->code = $request->get('code');
+        $city->save();
+
+        return redirect('currency');
     }
 
     /**
@@ -57,7 +64,7 @@ class CurrencyController extends Controller
      */
     public function edit(Currency $currency)
     {
-        //
+        return view('currency.form', $currency->toArray());
     }
 
     /**

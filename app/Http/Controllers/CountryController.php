@@ -14,7 +14,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        return view('country.index', [
+            'items' => Country::paginate(20),
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('country.form');
     }
 
     /**
@@ -35,7 +37,11 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $city = new Country();
+        $city->title = $request->get('title');
+        $city->save();
+
+        return redirect('country');
     }
 
     /**
@@ -57,7 +63,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        //
+        return view('country.form', $country->toArray());
     }
 
     /**

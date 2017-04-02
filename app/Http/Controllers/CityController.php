@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Country;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -14,7 +15,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        return view('city.index', [
+        'items' => City::paginate(20),
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('city.form', [
+            'countries' => Country::all()
+        ]);
     }
 
     /**
@@ -35,7 +40,12 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $city = new City();
+        $city->title = $request->get('title');
+        $city->country_id = $request->get('country_id');
+        $city->save();
+
+        return redirect('city');
     }
 
     /**
@@ -57,7 +67,9 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $formData = $city->toArray();
+        $formData['countries'] = Country::all();
+        return view('city.form', $formData);
     }
 
     /**

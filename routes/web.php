@@ -14,9 +14,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    return phpinfo();
     return view('welcome');
 });
 
 Route::resource('city', 'CityController');
-Route::resource('city', 'CountryController');
-Route::resource('city', 'CurrencyController');
+Route::resource('country', 'CountryController');
+Route::resource('currency', 'CurrencyController');

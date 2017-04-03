@@ -6,6 +6,7 @@ use App\Client;
 use App\City;
 use App\Country;
 use App\Currency;
+use App\Wallet;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -44,12 +45,21 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new Client();
-        $city->first_name = $request->get('first_name');
-        $city->last_name = $request->get('last_name');
-        $city->city_id = $request->get('city_id');
-        $city->country_id = $request->get('country_id');
-        $city->save();
+        $client = new Client();
+        $client->first_name = $request->get('first_name');
+        $client->last_name = $request->get('last_name');
+        $client->city_id = $request->get('city_id');
+        $client->country_id = $request->get('country_id');
+        $client->save();
+
+        $currencyId = 1;
+        if ($currencyId > 0) {
+            $wallet = new Wallet();
+            $wallet->title = 'Основной кошедек';
+            $wallet->client_id = $client->id;
+            $wallet->currency_id = $currencyId;
+            $wallet->save();
+        }
 
         return redirect('client');
     }

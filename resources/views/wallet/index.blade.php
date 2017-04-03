@@ -10,7 +10,9 @@
         <tr>
             <th>ID</th>
             <th>Наименование</th>
-            <th>Страна</th>
+            <th>Валюта</th>
+            <th>Клиент</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -18,7 +20,8 @@
             <tr>
                 <th>{{ $item->id }}</th>
                 <td>{{ $item->title }}</td>
-                <td>{{ $item->country->title }}</td>
+                <td>{{ $item->currency->title }}</td>
+                <td>{{ $item->client->full_name() }}</td>
                 <td>
                     <a href="/wallet/{{ $item->id }}/edit" title="Редактировать">
                         <span class="glyphicon glyphicon-pencil"></span>

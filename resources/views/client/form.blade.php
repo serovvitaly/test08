@@ -41,6 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="currency_id">Валюта кошелька</label>
+                    <p class="help-block small">Если указать валюту, то кошелек создастся автоматически.</p>
                     <select class="form-control" id="currency_id" name="currency_id">
                         <option></option>
                         @foreach($currencies as $currency)

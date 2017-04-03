@@ -13,10 +13,18 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(\Symfony\Component\HttpFoundation\Request $request)
     {
+        $countryId = (int)$request->get('country_id');
+
+        if ($countryId > 0) {
+            $items = City::where(['country_id' => $countryId])->paginate(20);
+        } else {
+            $items = City::paginate(20);
+        }
+
         return view('city.index', [
-            'items' => City::paginate(20),
+            'items' => $items,
         ]);
     }
 

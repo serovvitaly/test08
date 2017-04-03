@@ -11,6 +11,7 @@
             <th>ID</th>
             <th>Наименование</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@
         <tr>
             <th>{{ $item->id }}</th>
             <td>{{ $item->title }}</td>
+            <td><a href="/city?country_id={{ $item->id }}">Города</a></td>
             <td>
                 <a href="/country/{{ $item->id }}/edit" title="Редактировать">
                     <span class="glyphicon glyphicon-pencil"></span>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
-use App\Country;
+use App\Client;
+use App\Currency;
+use App\Wallet;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class WalletController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        return view('city.index', [
-            'items' => City::paginate(20),
+        return view('wallet.index', [
+            'items' => Wallet::paginate(20),
         ]);
     }
 
@@ -27,8 +28,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.form', [
-            'countries' => Country::all()
+        return view('wallet.form', [
+            'clients' => Client::all(),
+            'currencies' => Currency::all(),
         ]);
     }
 
@@ -40,21 +42,22 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City();
+        $city = new Wallet();
         $city->title = $request->get('title');
-        $city->country_id = $request->get('country_id');
+        $city->client_id = $request->get('client_id');
+        $city->currency_id = $request->get('currency_id');
         $city->save();
 
-        return redirect('city');
+        return redirect('wallet');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\City  $city
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show(Wallet $wallet)
     {
         //
     }
@@ -62,24 +65,25 @@ class CityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\City  $city
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit(Wallet $wallet)
     {
-        $formData = $city->toArray();
-        $formData['countries'] = Country::all();
-        return view('city.form', $formData);
+        $formData = $wallet->toArray();
+        $formData['clients'] = Client::all();
+        $formData['currencies'] = Currency::all();
+        return view('wallet.form', $formData);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\City  $city
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, Wallet $wallet)
     {
         //
     }
@@ -87,10 +91,10 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\City  $city
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(Wallet $wallet)
     {
         //
     }

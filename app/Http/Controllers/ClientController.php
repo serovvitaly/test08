@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\City;
 use App\Country;
+use App\Currency;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        return view('city.index', [
-            'items' => City::paginate(20),
+        return view('client.index', [
+            'items' => Client::paginate(20),
         ]);
     }
 
@@ -27,9 +29,11 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.form', [
-            'countries' => Country::all()
-        ]);
+        $formData = [];
+        $formData['cities'] = City::all();
+        $formData['countries'] = Country::all();
+        $formData['currencies'] = Currency::all();
+        return view('client.form', $formData);
     }
 
     /**
@@ -40,21 +44,23 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City();
-        $city->title = $request->get('title');
+        $city = new Client();
+        $city->first_name = $request->get('first_name');
+        $city->last_name = $request->get('last_name');
+        $city->city_id = $request->get('city_id');
         $city->country_id = $request->get('country_id');
         $city->save();
 
-        return redirect('city');
+        return redirect('client');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\City  $city
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show(Client $client)
     {
         //
     }
@@ -62,24 +68,26 @@ class CityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\City  $city
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit(Client $client)
     {
-        $formData = $city->toArray();
+        $formData = $client->toArray();
+        $formData['cities'] = City::all();
         $formData['countries'] = Country::all();
-        return view('city.form', $formData);
+        $formData['currencies'] = Currency::all();
+        return view('client.form', $formData);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\City  $city
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, Client $client)
     {
         //
     }
@@ -87,10 +95,10 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\City  $city
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(Client $client)
     {
         //
     }

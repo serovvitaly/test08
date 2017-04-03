@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('client', 'ClientController');
+Route::resource('wallet', 'WalletController');
+
 Route::resource('city', 'CityController');
 Route::resource('country', 'CountryController');
 Route::resource('currency', 'CurrencyController');

@@ -18,4 +18,9 @@ class Currency extends Model implements CurrencyEntityInterface
     {
         // TODO: Implement getCurrency() method.
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

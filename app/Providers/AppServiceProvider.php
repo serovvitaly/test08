@@ -23,6 +23,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(\App\Services\CityServiceInterface::class, function(){
+            return new \App\Services\CityService;
+        });
+        $this->app->bind(\App\Services\TransactionServiceInterface::class, function(){
+            return new \App\Services\TransactionService;
+        });
+        $this->app->bind(\domain\WalletEntityInterface::class, function(){
+            return new \domain\WalletService;
+        });
     }
 }

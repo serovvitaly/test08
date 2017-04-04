@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Country;
+use App\Services\CityServiceInterface;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -13,7 +14,7 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, CityServiceInterface $cityService)
     {
         $countryId = (int)$request->get('country_id');
 
@@ -46,13 +47,9 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CityServiceInterface $cityService)
     {
-        $city = new City();
-        $city->title = $request->get('title');
-        $city->country_id = $request->get('country_id');
-        $city->save();
-
+        $cityService->make($request->all());
         return redirect('city');
     }
 
@@ -87,9 +84,10 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, City $city, CityServiceInterface $cityService)
     {
-        //
+        $cityService->update($request->all());
+        return redirect('city');
     }
 
     /**

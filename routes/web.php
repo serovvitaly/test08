@@ -24,3 +24,11 @@ Route::resource('city', 'CityController');
 Route::resource('country', 'CountryController');
 Route::resource('currency', 'CurrencyController');
 Route::resource('quote', 'QuoteController');
+
+Route::group(['prefix' => 'transaction'], function () {
+    Route::resource('/', 'TransactionController');
+    Route::resource('replenish', 'ReplenishController');
+    Route::resource('transfer', 'TransferController');
+});
+
+

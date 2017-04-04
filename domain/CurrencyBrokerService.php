@@ -31,11 +31,4 @@ class CurrencyBrokerService
 
         return $money;
     }
-
-    public static function transaction(callable $callback)
-    {
-        $callback();
-
-        return true;
-    }
 }

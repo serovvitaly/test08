@@ -11,7 +11,7 @@ class CurrencyBrokerServiceTest extends TestCase
     public function testCompareCurrencies()
     {
         /** @var \App\Currency $curr1 */
-        $curr1 = factory(\App\Currency::class)->make();
+        //$curr1 = factory(\App\Currency::class)->make();
 
         /** @var \App\Currency $curr2 */
         /*$curr2 = factory(\App\Currency::class)->make([

@@ -24,18 +24,22 @@ class WalletService
         /** Создаем объект денег указанной валюты */
         $money = new \domain\Money($currencyEntity, $amount);
 
+        $withdrawingMoney = CurrencyBrokerService::conversionCurrency($money, $walletEntity->getCurrency());
+
         /** Пополняем кошелек деньгами, и возвращаем результат */
-        return $walletEntity->replenish($money);
+        return $walletEntity->replenish($withdrawingMoney);
     }
 
     /**
      * Перевод денежных средств с одного кошелька на другой
-     * @param int $fromWalletId
-     * @param int $toWalletId
-     * @param int $currencyId
+     * @param WalletEntityInterface $fromWallet
+     * @param WalletEntityInterface $toWallet
+     * @param CurrencyEntityInterface $currencyEntity
      * @param float $amount
      * @return bool
-     * @throws \Exception
+     * @internal param int $fromWalletId
+     * @internal param int $toWalletId
+     * @internal param int $currencyId
      */
     public function moneyTransfer(
         WalletEntityInterface $fromWallet,
@@ -44,24 +48,21 @@ class WalletService
         $amount
     )
     {
+        if ($fromWallet->getId() == $toWallet->getId()) {
+            return false;
+        }
+
         /** Создаем объект денег указанной валюты */
         $money = new \domain\Money($currencyEntity, $amount);
 
         $withdrawingMoney = CurrencyBrokerService::conversionCurrency($money, $fromWallet->getCurrency());
         $replenishingMoney = CurrencyBrokerService::conversionCurrency($money, $toWallet->getCurrency());
 
-        /**
-         * Производим списание с одного кошелька и зачисление на другой внутри транзакции
-         */
-        $transactionStatus = CurrencyBrokerService::transaction(
-            function () use ($fromWallet, $withdrawingMoney, $toWallet, $replenishingMoney) {
-                /** Списываем средства с кошелька отправителя */
-                $fromWallet->withdraw($withdrawingMoney);
-                /** Пополняем кошелек получателя */
-                $toWallet->replenish($replenishingMoney);
-            }
-        );
+        /** Списываем средства с кошелька отправителя */
+        $fromWallet->withdraw($withdrawingMoney);
+        /** Пополняем кошелек получателя */
+        $toWallet->replenish($replenishingMoney);
 
-        return $transactionStatus;
+        return true;
     }
 }

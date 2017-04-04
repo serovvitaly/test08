@@ -14,10 +14,18 @@ class WalletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $clientId = (int)$request->get('client_id');
+
+        if ($clientId > 0) {
+            $items = Wallet::where(['client_id' => $clientId])->paginate(20);
+        } else {
+            $items = Wallet::paginate(20);
+        }
+
         return view('wallet.index', [
-            'items' => Wallet::paginate(20),
+            'items' => $items,
         ]);
     }
 

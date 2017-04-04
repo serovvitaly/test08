@@ -19,6 +19,8 @@
                 <li><a href="/country">Страны</a></li>
                 <li><a href="/currency">Валюты</a></li>
                 <li><a href="/quote">Котировки валют</a></li>
+                <li><a href="/quote" class="btn btn-success btn-sm">Пополнить кошелек</a></li>
+                <li><a href="/quote" class="btn btn-danger btn-sm">Сделать перевод</a></li>
             </ul>
         </div>
     </div>

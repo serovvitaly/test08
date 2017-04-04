@@ -13,7 +13,7 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(\Symfony\Component\HttpFoundation\Request $request)
+    public function index(Request $request)
     {
         $countryId = (int)$request->get('country_id');
 

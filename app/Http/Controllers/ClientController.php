@@ -55,7 +55,7 @@ class ClientController extends Controller
         $currencyId = 1;
         if ($currencyId > 0) {
             $wallet = new Wallet();
-            $wallet->title = 'Основной кошедек';
+            $wallet->title = 'Основной кошелек';
             $wallet->client_id = $client->id;
             $wallet->currency_id = $currencyId;
             $wallet->save();

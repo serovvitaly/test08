@@ -13,6 +13,7 @@
             <th>Город</th>
             <th>Страна</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
             <td>{{ $item->full_name() }}</td>
             <td>{{ $item->city->title }}</td>
             <td>{{ $item->country->title }}</td>
+            <td><a href="/wallet?client_id={{ $item->id }}">Кошельки</a></td>
             <td>
                 <a href="/client/{{ $item->id }}/edit" title="Редактировать">
                     <span class="glyphicon glyphicon-pencil"></span>

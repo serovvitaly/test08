@@ -22,7 +22,7 @@ class CretaeTransactionsTable extends Migration
             $table->integer('currency_id');
             $table->integer('amount');
             $table->timestamps();
-            $table->index('client_id', 'type', 'currency_id');
+            $table->index(['client_id', 'type', 'currency_id']);
         });
     }
 

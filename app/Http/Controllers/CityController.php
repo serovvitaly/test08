@@ -49,7 +49,7 @@ class CityController extends Controller
      */
     public function store(Request $request, CityServiceInterface $cityService)
     {
-        $cityService->make($request->all());
+        $cityService->create($request->all());
         return redirect('city');
     }
 

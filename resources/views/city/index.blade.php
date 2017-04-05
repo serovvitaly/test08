@@ -23,7 +23,7 @@
                     <a href="/city/{{ $item->id }}/edit" title="Редактировать">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    <a href="/city/{{ $item->id }}" title="Удалить">
+                    <a href="#" onclick="deteleItem('/city/{{ $item->id }}'); return false;" title="Удалить">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
                 </td>

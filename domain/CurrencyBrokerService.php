@@ -29,6 +29,24 @@ class CurrencyBrokerService
             return $money;
         }
 
-        return $money;
+        $rateDirect = \App\Quote::where('from_currency_id', $money->getCurrency()->getId())
+            ->where('to_currency_id', $currency->getId())
+            ->first();
+
+        if ($rateDirect and $rateDirect->rate > 0) {
+            $amount = $money->getAmount() / $rateDirect->rate;
+            return new Money($currency, $amount);
+        }
+
+        $rateReverse = \App\Quote::where('to_currency_id', $money->getCurrency()->getId())
+            ->where('from_currency_id', $currency->getId())
+            ->first();
+
+        if ($rateReverse and $rateReverse->rate > 0) {
+            $amount = $money->getAmount() * $rateReverse->rate;
+            return new Money($currency, $amount);
+        }
+
+        return null;
     }
 }

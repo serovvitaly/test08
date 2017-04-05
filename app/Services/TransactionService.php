@@ -31,4 +31,19 @@ class TransactionService implements TransactionServiceInterface
             $this->walletService->moneyTransfer($fromWallet, $toWallet, $currencyEntity, $amount);
         });
     }
+
+    public function getWalletTransactions($walletId, \DateTime $fromDate = null, \DateTime $toDate = null)
+    {
+        $query = \App\Transaction::where(['wallet_id' => $walletId]);
+
+        if ($fromDate) {
+            $query->where('created_at', '>=', $fromDate->format('Y-m-d H:i:s'));
+        }
+
+        if ($toDate) {
+            $query->where('created_at', '<=', $toDate->format('Y-m-d H:i:s'));
+        }
+
+        return $query->get();
+    }
 }

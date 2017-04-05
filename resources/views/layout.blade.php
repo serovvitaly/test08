@@ -5,6 +5,10 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <div class="container" style="padding-top: 10px;">
@@ -22,6 +26,7 @@
                 <li><a href="/quote">Котировки валют</a></li>
 
                 <li><a href="/transaction"><strong>Транзакции</strong></a></li>
+                <li><a href="/transaction/report/create" class="btn btn-default btn-sm">Отчет</a></li>
                 <li><a href="/transaction/replenish" class="btn btn-success btn-sm">Пополнить кошелек</a></li>
                 <li><a href="/transaction/transfer" class="btn btn-danger btn-sm">Сделать перевод</a></li>
             </ul>

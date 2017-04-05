@@ -11,7 +11,7 @@ class Currency extends Model implements CurrencyEntityInterface
 
     public function getShortName()
     {
-        // TODO: Implement getShortName() method.
+        return $this->code;
     }
 
     public function getCurrency()

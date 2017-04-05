@@ -29,6 +29,9 @@ Route::group(['prefix' => 'transaction'], function () {
     Route::resource('/', 'TransactionController');
     Route::resource('replenish', 'ReplenishController');
     Route::resource('transfer', 'TransferController');
+    Route::get('report/create', 'TransactionController@getReportForm');
+    Route::post('report', 'TransactionController@getReport');
+    Route::get('report', 'TransactionController@exportReport');
 });
 
 

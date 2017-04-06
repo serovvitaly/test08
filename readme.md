@@ -52,6 +52,8 @@ composer install
 
 php artisan StartApp
 
+Если не удастся развернуть приложение у себя, то вот готовое на моем сервере http://zalipay.com/
+
 
 ### Прочее
 

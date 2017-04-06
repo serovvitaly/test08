@@ -44,6 +44,8 @@ password = 123
 ...если хотите использовать свои настройки БД, то их можно указать прямо в конфиге
 config/database.php (параметры перенесены из файла .env, что бы не зависить от окружения)
 
+Далее:
+
 git clone git@github.com:serovvitaly/test08.git
 
 composer install

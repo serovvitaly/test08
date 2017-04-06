@@ -33,6 +33,17 @@
 
 ### Развертывание
 
+Для успешной установки. требуется готовая база данных:
+
+database = test_payment_system
+
+username = postgres
+
+password = 123
+
+...если хотите использовать свои настройки БД, то их можно указать прямо в конфиге
+config/database.php (параметры перенесены из файла .env, что бы не зависить от окружения)
+
 git clone git@github.com:serovvitaly/test08.git
 
 composer install

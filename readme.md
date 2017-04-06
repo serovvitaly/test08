@@ -39,10 +39,6 @@ composer install
 
 php artisan StartApp
 
-**Если не удастся развернуть у себя на площадке, то вот готовое приложение на моем сервере:**
-
-http://test08.devgang.ru/
-
 
 ### Прочее
 
